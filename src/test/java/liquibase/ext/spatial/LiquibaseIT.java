@@ -197,7 +197,7 @@ public abstract class LiquibaseIT {
          final ResourceAccessor resourceAccessor, final DatabaseConnection databaseConnection)
                throws LiquibaseException {
       final Liquibase liquibase = new Liquibase(changeLogFile, resourceAccessor, databaseConnection);
-      liquibase.getLog().setLogLevel(LogLevel.DEBUG);
+      // liquibase.getLog().setLogLevel(LogLevel.DEBUG); // TODO dunno
       return liquibase;
    }
 

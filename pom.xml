@@ -75,10 +75,10 @@
 
       <!-- Dependency Versions -->
       <geodb.version>0.8</geodb.version>
-      <hatbox.version>1.0.b8</hatbox.version>
+      <hatbox.version>1.0.b11</hatbox.version>
       <h2.version>1.4.177</h2.version>
       <jts.version>1.13</jts.version>
-      <liquibase.version>3.3.0</liquibase.version>
+      <liquibase.version>3.10.0</liquibase.version>
    </properties>
 
    <dependencies>
@@ -91,6 +91,11 @@
          <groupId>org.liquibase</groupId>
          <artifactId>liquibase-core</artifactId>
          <version>${liquibase.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.yaml</groupId>
+         <artifactId>snakeyaml</artifactId>
+         <version>1.24</version>
       </dependency>
       <dependency>
          <groupId>com.h2database</groupId>

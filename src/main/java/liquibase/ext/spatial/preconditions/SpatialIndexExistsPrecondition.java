@@ -6,6 +6,7 @@ import java.util.Set;
 
 import liquibase.changelog.ChangeSet;
 import liquibase.changelog.DatabaseChangeLog;
+import liquibase.changelog.visitor.ChangeExecListener;
 import liquibase.database.Database;
 import liquibase.database.core.DerbyDatabase;
 import liquibase.database.core.H2Database;
@@ -112,8 +113,7 @@ public class SpatialIndexExistsPrecondition extends AbstractPrecondition {
    }
 
    @Override
-   public void check(final Database database, final DatabaseChangeLog changeLog,
-         final ChangeSet changeSet) throws PreconditionFailedException, PreconditionErrorException {
+   public void check(Database database, DatabaseChangeLog changeLog, ChangeSet changeSet, ChangeExecListener changeExecListener) throws PreconditionFailedException, PreconditionErrorException {
       Precondition delegatedPrecondition;
       if (database instanceof DerbyDatabase || database instanceof H2Database) {
          final TableExistsPrecondition precondition = new TableExistsPrecondition();
@@ -131,7 +131,7 @@ public class SpatialIndexExistsPrecondition extends AbstractPrecondition {
          precondition.setColumnNames(getColumnNames());
          delegatedPrecondition = precondition;
       }
-      delegatedPrecondition.check(database, changeLog, changeSet);
+      delegatedPrecondition.check(database, changeLog, changeSet, changeExecListener);
    }
 
    /**
