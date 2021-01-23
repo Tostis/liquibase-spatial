@@ -110,7 +110,7 @@
          <tableExists tableName="TEST" />
       </preConditions>
       <dropTable tableName="TEST" />
-      <rollback changeSetId="Create table" changeSetAuthor="test" />
+      <rollback changeSetId="Create test table" changeSetAuthor="test" />
       <rollback changeSetId="Create spatial index" changeSetAuthor="test" />
       <rollback changeSetId="Insert spatial data" changeSetAuthor="test" />
    </changeSet>

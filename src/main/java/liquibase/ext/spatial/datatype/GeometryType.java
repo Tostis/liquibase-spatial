@@ -11,16 +11,16 @@ import liquibase.datatype.DatabaseDataType;
 import liquibase.datatype.LiquibaseDataType;
 import liquibase.exception.UnexpectedLiquibaseException;
 import liquibase.statement.DatabaseFunction;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.io.ParseException;
+import org.locationtech.jts.io.WKTReader;
 
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.io.ParseException;
-import com.vividsolutions.jts.io.WKTReader;
 
 /**
  * The <code>GeometryType</code> assists in defining database-specific geometry types and converting
  * SQL representations of geometries.
  */
-@DataTypeInfo(name = "geometry", aliases = { "com.vividsolutions.jts.geom.Geometry" }, minParameters = 0, maxParameters = 2, priority = LiquibaseDataType.PRIORITY_DEFAULT)
+@DataTypeInfo(name = "geometry", aliases = { "org.locationtech.jts.geom.Geometry" }, minParameters = 0, maxParameters = 2, priority = LiquibaseDataType.PRIORITY_DEFAULT)
 public class GeometryType extends LiquibaseDataType {
    /**
     * Returns the value geometry type parameter.
@@ -113,9 +113,13 @@ public class GeometryType extends LiquibaseDataType {
       return returnValue;
    }
 
+   /**
+    * Workaround: Skip this column from loadData tag.
+    * It can be WKT or EWKT
+    * @return
+    */
    @Override
    public LoadDataChange.LOAD_DATA_TYPE getLoadTypeName() {
-	  // TODO is this right?
       return LoadDataChange.LOAD_DATA_TYPE.SKIP;
    }
 

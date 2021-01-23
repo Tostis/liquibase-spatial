@@ -74,17 +74,17 @@
       <versions-maven-plugin.version>2.1</versions-maven-plugin.version>
 
       <!-- Dependency Versions -->
-      <geodb.version>0.8</geodb.version>
+      <geodb.version>0.9</geodb.version>
       <hatbox.version>1.0.b11</hatbox.version>
-      <h2.version>1.4.177</h2.version>
-      <jts.version>1.13</jts.version>
-      <liquibase.version>3.10.0</liquibase.version>
+      <h2.version>1.4.200</h2.version>
+      <jts.version>1.16.1</jts.version>
+      <liquibase.version>3.10.3</liquibase.version>
    </properties>
 
    <dependencies>
       <dependency>
-         <groupId>com.vividsolutions</groupId>
-         <artifactId>jts</artifactId>
+         <groupId>org.locationtech.jts</groupId>
+         <artifactId>jts-core</artifactId>
          <version>${jts.version}</version>
       </dependency>
       <dependency>
@@ -95,7 +95,7 @@
       <dependency>
          <groupId>org.yaml</groupId>
          <artifactId>snakeyaml</artifactId>
-         <version>1.24</version>
+         <version>1.26</version>
       </dependency>
       <dependency>
          <groupId>com.h2database</groupId>

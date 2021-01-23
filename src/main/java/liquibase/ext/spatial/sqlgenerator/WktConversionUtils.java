@@ -3,7 +3,7 @@ package liquibase.ext.spatial.sqlgenerator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Geometry;
 
 import liquibase.database.Database;
 

@@ -77,9 +77,18 @@
          <spatial:spatialIndexExists tableName="TEST"
             columnNames="GEOM" />
       </preConditions>
-      <loadData tableName="TEST" file="three_points.csv">
-         <column name="ID" type="NUMERIC" />
-      </loadData>
+      <insert tableName="TEST">
+         <column name="ID" value="1" />
+         <column name="GEOM" value="SRID=4326;POINT (-5 -5)" />
+      </insert>
+      <insert tableName="TEST">
+         <column name="ID" value="2" />
+         <column name="GEOM" value="SRID=4326;POINT (0 0)" />
+      </insert>
+      <insert tableName="TEST">
+         <column name="ID" value="3" />
+         <column name="GEOM" value="SRID=4326;POINT (5 5)" />
+      </insert>
       <rollback>
          <!-- Hatbox/Derby don't like deleting everything from the table in one statement. -->
          <delete tableName="TEST">
@@ -176,7 +185,7 @@
          <tableExists tableName="TEST" />
       </preConditions>
       <dropTable tableName="TEST" />
-      <rollback changeSetId="Create table" changeSetAuthor="test" />
+      <rollback changeSetId="Create test table" changeSetAuthor="test" />
       <rollback changeSetId="Create spatial index" changeSetAuthor="test" />
       <rollback changeSetId="Insert spatial data" changeSetAuthor="test" />
    </changeSet>
