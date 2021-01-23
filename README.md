@@ -20,6 +20,10 @@ requires Liquibase 3.1.1 or newer.
       <td>Liquibase 3.3.x</td>
       <td>Liquibase Spatial 1.2.x</td>
    </tr>
+   <tr>
+      <td>Liquibase 3.10.x</td>
+      <td>Liquibase Spatial 1.2.x-Tostis</td>
+   </tr>
 </table>
 
 In order to use this extension, you must have the [<code>liquibase-spatial</code>](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.github.lonnyj%22%20AND%20a%3A%22liquibase-spatial%22)
