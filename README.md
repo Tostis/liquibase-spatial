@@ -37,7 +37,7 @@ jar in your classpath. For XML change logs, define the <code>spatial</code> name
    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd 
    http://www.liquibase.org/xml/ns/dbchangelog-ext/liquibase-spatial 
-      http://lonnyj.github.com/liquibase-spatial/liquibase-spatial.xsd">
+      http://lonnyj.github.io/liquibase-spatial/liquibase-spatial.xsd">
 </databaseChangeLog>
 ```
 
@@ -87,4 +87,4 @@ geometry column, create a spatial index on that column, and insert data into the
 </changeSet>
 ```
 
-Refer to the [documentation](http://lonnyj.github.com/liquibase-spatial) for further information.
+Refer to the [documentation](http://lonnyj.github.io/liquibase-spatial) for further information.

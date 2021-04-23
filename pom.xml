@@ -8,7 +8,7 @@
 
    <name>Liquibase Spatial</name>
    <description>Liquibase Spatial extends Liquibase to handle spatial indexing and geometry types</description>
-   <url>http://lonnyj.github.com/liquibase-spatial</url>
+   <url>http://lonnyj.github.io/liquibase-spatial</url>
    <inceptionYear>2014</inceptionYear>
 
    <licenses>
@@ -445,7 +445,7 @@
             <site>
                <id>github</id>
                <name>GitHub</name>
-               <url>http://lonnyj.github.com/${project.artifactId}</url>
+               <url>http://lonnyj.github.io/${project.artifactId}</url>
             </site>
          </distributionManagement>
          <reporting>
