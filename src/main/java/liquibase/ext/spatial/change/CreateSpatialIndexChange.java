@@ -112,7 +112,7 @@ public class CreateSpatialIndexChange extends AbstractChange
    @DatabaseChangeProperty(
          description = "The Spatial Reference ID of the indexed data.  An EPSG SRID is assumed.",
          exampleValue = "4326",
-         requiredForDatabase = "derby, h2")
+         requiredForDatabase = {"derby", "h2"})
    public String getSrid() {
       return this.srid;
    }
