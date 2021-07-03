@@ -56,12 +56,9 @@ public class GeometryType extends LiquibaseDataType {
       final DatabaseDataType databaseDataType;
       if (database instanceof DerbyDatabase) {
          databaseDataType = new DatabaseDataType("VARCHAR(32672) FOR BIT DATA");
-      } else if (database instanceof H2Database) {
-         // User's wanting to use a BLOB can use modifySql.
-         databaseDataType = new DatabaseDataType("BINARY");
       } else if (database instanceof OracleDatabase) {
          databaseDataType = new DatabaseDataType("SDO_GEOMETRY");
-      } else if (database instanceof PostgresDatabase) {
+      } else if (database instanceof PostgresDatabase || database instanceof H2Database) {
          databaseDataType = new DatabaseDataType(getName(), getParameters());
       } else {
          databaseDataType = new DatabaseDataType("GEOMETRY");

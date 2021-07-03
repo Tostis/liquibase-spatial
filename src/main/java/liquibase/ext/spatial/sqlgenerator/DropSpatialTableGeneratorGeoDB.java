@@ -27,7 +27,7 @@ public class DropSpatialTableGeneratorGeoDB extends AbstractSqlGenerator<DropTab
     */
    @Override
    public boolean supports(final DropTableStatement statement, final Database database) {
-      return database instanceof DerbyDatabase || database instanceof H2Database;
+      return database instanceof DerbyDatabase;
    }
 
    /**

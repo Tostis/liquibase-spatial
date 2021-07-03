@@ -54,7 +54,7 @@ public class DropGeometryColumnGeneratorGeoDBTest {
    public Object[][] supportsTestData() {
       final DropColumnStatement statement = new DropColumnStatement(null, null, null, null);
       return new Object[][] { new Object[] { statement, new DerbyDatabase(), true },
-            new Object[] { statement, new H2Database(), true },
+            new Object[] { statement, new H2Database(), false },
             new Object[] { statement, new OracleDatabase(), false }, };
    }
 
@@ -77,9 +77,9 @@ public class DropGeometryColumnGeneratorGeoDBTest {
 
    @DataProvider
    public Object[][] generateSqlTestData() throws SQLException {
-      // Create an H2 database instance with an empty geometry_columns table.
-      final Database notGeometryDatabase = new H2Database();
-      Connection connection = DriverManager.getConnection("jdbc:h2:mem:target/noGeometry");
+      // Create a Derby database instance with an empty geometry_columns table.
+      final Database notGeometryDatabase = new DerbyDatabase();
+      Connection connection = DriverManager.getConnection("jdbc:derby:memory:noGeometry;create=true");
       DatabaseConnection conn = new JdbcConnection(connection);
       notGeometryDatabase.setConnection(conn);
       Statement statement = connection.createStatement();
@@ -88,9 +88,9 @@ public class DropGeometryColumnGeneratorGeoDBTest {
             + "srid INT, type VARCHAR(30))");
       statement.close();
 
-      // Create an H2 database instance with a populated geometry_columns table.
-      final Database geometryDatabase = new H2Database();
-      connection = DriverManager.getConnection("jdbc:h2:mem:target/geometry");
+      // Create a Derby database instance with a populated geometry_columns table.
+      final Database geometryDatabase = new DerbyDatabase();
+      connection = DriverManager.getConnection("jdbc:derby:memory:geometry;create=true");
       conn = new JdbcConnection(connection);
       geometryDatabase.setConnection(conn);
       statement = connection.createStatement();

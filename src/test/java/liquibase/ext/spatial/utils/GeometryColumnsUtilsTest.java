@@ -47,10 +47,8 @@ public class GeometryColumnsUtilsTest {
       geometryColumnsDatabase.setConnection(conn);
 
       Statement statement = connection.createStatement();
-      statement
-            .execute("CREATE TABLE geometry_columns (f_table_schema VARCHAR(128), "
-                  + "f_table_name VARCHAR(128), f_geometry_column VARCHAR(128), coord_dimension INT, "
-                  + "srid INT, type VARCHAR(30))");
+      statement.execute("CREATE ALIAS IF NOT EXISTS H2GIS_SPATIAL FOR \"org.h2gis.functions.factory.H2GISFunctions.load\"");
+      statement.execute("CALL H2GIS_SPATIAL()");
       statement.close();
       return new Object[][] {
             new Object[] { noGeometryColumnsDatabase, false },

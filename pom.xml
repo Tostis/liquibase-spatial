@@ -4,7 +4,7 @@
 
    <groupId>com.github.lonnyj</groupId>
    <artifactId>liquibase-spatial</artifactId>
-   <version>1.2.2-SNAPSHOT</version>
+   <version>1.2.4-Tostis-SNAPSHOT</version>
 
    <name>Liquibase Spatial</name>
    <description>Liquibase Spatial extends Liquibase to handle spatial indexing and geometry types</description>
@@ -75,8 +75,8 @@
 
       <!-- Dependency Versions -->
       <geodb.version>0.9</geodb.version>
+      <h2gis.version>2.0.0-SNAPSHOT</h2gis.version>
       <hatbox.version>1.0.b11</hatbox.version>
-      <h2.version>1.4.200</h2.version>
       <jts.version>1.16.1</jts.version>
       <liquibase.version>3.10.3</liquibase.version>
    </properties>
@@ -98,16 +98,20 @@
          <version>1.26</version>
       </dependency>
       <dependency>
-         <groupId>com.h2database</groupId>
-         <artifactId>h2</artifactId>
-         <version>${h2.version}</version>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
          <groupId>net.sourceforge.hatbox</groupId>
          <artifactId>hatbox</artifactId>
          <version>${hatbox.version}</version>
          <scope>test</scope>
+         <exclusions>
+            <exclusion>
+               <artifactId>h2</artifactId>
+               <groupId>com.h2database</groupId>
+            </exclusion>
+            <exclusion>
+               <artifactId>jts-core</artifactId>
+               <groupId>org.locationtech.jts</groupId>
+            </exclusion>
+         </exclusions>
       </dependency>
       <dependency>
          <groupId>org.mockito</groupId>
@@ -119,6 +123,22 @@
          <groupId>org.opengeo</groupId>
          <artifactId>geodb</artifactId>
          <version>${geodb.version}</version>
+         <scope>test</scope>
+         <exclusions>
+            <exclusion>
+               <artifactId>h2</artifactId>
+               <groupId>com.h2database</groupId>
+            </exclusion>
+            <exclusion>
+               <artifactId>jts-core</artifactId>
+               <groupId>org.locationtech.jts</groupId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      <dependency>
+         <groupId>org.orbisgis</groupId>
+         <artifactId>h2gis</artifactId>
+         <version>${h2gis.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>

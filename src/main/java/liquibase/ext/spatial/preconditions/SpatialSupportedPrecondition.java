@@ -68,13 +68,18 @@ public class SpatialSupportedPrecondition extends AbstractPrecondition {
 
    @Override
    public void check(Database database, DatabaseChangeLog changeLog, ChangeSet changeSet, ChangeExecListener changeExecListener) throws PreconditionFailedException, PreconditionErrorException {
-      if (database instanceof DerbyDatabase || database instanceof H2Database) {
+      if (database instanceof DerbyDatabase) {
          final TableExistsPrecondition precondition = new TableExistsPrecondition();
          precondition.setTableName("geometry_columns");
          precondition.check(database, changeLog, changeSet, changeExecListener);
       } else if (database instanceof PostgresDatabase) {
          final ViewExistsPrecondition precondition = new ViewExistsPrecondition();
          precondition.setSchemaName("public");
+         precondition.setViewName("geometry_columns");
+         precondition.check(database, changeLog, changeSet, changeExecListener);
+      } else if (database instanceof H2Database) {
+         final ViewExistsPrecondition precondition = new ViewExistsPrecondition();
+         precondition.setSchemaName(database.getLiquibaseSchemaName());
          precondition.setViewName("geometry_columns");
          precondition.check(database, changeLog, changeSet, changeExecListener);
       } else if (database instanceof OracleDatabase) {

@@ -12,7 +12,7 @@ import liquibase.statement.core.InsertStatement;
 public class SpatialInsertGeneratorGeoDB extends AbstractSpatialInsertGenerator {
    @Override
    public boolean supports(final InsertStatement statement, final Database database) {
-      return database instanceof DerbyDatabase || database instanceof H2Database;
+      return database instanceof DerbyDatabase;
    }
 
    /**

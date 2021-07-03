@@ -17,7 +17,7 @@ import liquibase.structure.core.Table;
 public class CreateSpatialIndexGeneratorGeoDB extends AbstractCreateSpatialIndexGenerator {
    @Override
    public boolean supports(final CreateSpatialIndexStatement statement, final Database database) {
-      return database instanceof DerbyDatabase || database instanceof H2Database;
+      return database instanceof DerbyDatabase;
    }
 
    /**

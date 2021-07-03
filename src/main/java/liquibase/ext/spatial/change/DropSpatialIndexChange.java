@@ -97,8 +97,8 @@ public class DropSpatialIndexChange extends AbstractChange {
    @Override
    public SqlStatement[] generateStatements(final Database database) {
       final Collection<SqlStatement> statements = new ArrayList<SqlStatement>();
-      // MySQL and PostgreSQL only need the normal DROP INDEX statement.
-      if (!(database instanceof MySQLDatabase) && !(database instanceof PostgresDatabase)) {
+      // MySQL, PostgreSQL and H2 only need the normal DROP INDEX statement.
+      if (!(database instanceof MySQLDatabase) && !(database instanceof PostgresDatabase) && !(database instanceof H2Database)) {
          final DropSpatialIndexStatement dropSpatialIndex = new DropSpatialIndexStatement(
                this.indexName, this.catalogName, this.schemaName, this.tableName);
          statements.add(dropSpatialIndex);
@@ -106,7 +106,7 @@ public class DropSpatialIndexChange extends AbstractChange {
 
       // GeoDB doesn't use a tradition index structure so don't issue the normal DROP INDEX
       // statement.
-      if (!(database instanceof DerbyDatabase) && !(database instanceof H2Database)) {
+      if (!(database instanceof DerbyDatabase)) {
          final DropIndexStatement dropIndex = new DropIndexStatement(this.indexName,
                this.catalogName, this.schemaName, this.tableName, null);
          statements.add(dropIndex);

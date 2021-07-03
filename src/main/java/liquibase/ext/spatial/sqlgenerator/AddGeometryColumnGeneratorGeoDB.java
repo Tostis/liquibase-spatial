@@ -36,8 +36,7 @@ public class AddGeometryColumnGeneratorGeoDB extends
    @Override
    public boolean supports(final AddColumnStatement statement,
          final Database database) {
-      return database instanceof DerbyDatabase
-            || database instanceof H2Database;
+      return database instanceof DerbyDatabase;
    }
 
    /**

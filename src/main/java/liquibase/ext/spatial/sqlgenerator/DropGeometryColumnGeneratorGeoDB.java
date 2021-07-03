@@ -31,7 +31,7 @@ public class DropGeometryColumnGeneratorGeoDB extends DropColumnGenerator {
     */
    @Override
    public boolean supports(final DropColumnStatement statement, final Database database) {
-      return database instanceof DerbyDatabase || database instanceof H2Database;
+      return database instanceof DerbyDatabase;
    }
 
    /**

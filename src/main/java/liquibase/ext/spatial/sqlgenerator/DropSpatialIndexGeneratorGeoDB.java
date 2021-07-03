@@ -28,7 +28,7 @@ public class DropSpatialIndexGeneratorGeoDB
    @Override
    public boolean supports(final DropSpatialIndexStatement statement,
          final Database database) {
-      return database instanceof DerbyDatabase || database instanceof H2Database;
+      return database instanceof DerbyDatabase;
    }
 
    /**

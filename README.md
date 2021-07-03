@@ -1,3 +1,7 @@
+About this fork
+- Liquibase 3.10.x
+- H2Gis replaces GeoDB (Derby still uses GeoDB)
+
 Liquibase Spatial
 -----------------
 Liquibase Spatial is an extension to Liquibase to handle spatial indexing and geometry types.  It 

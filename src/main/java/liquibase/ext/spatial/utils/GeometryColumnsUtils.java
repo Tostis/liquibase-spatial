@@ -136,13 +136,13 @@ public class GeometryColumnsUtils {
       String geometryColumnsName = database.correctObjectName(
             "geometry_columns", Table.class);
       DatabaseObject example = null;
-      if (database instanceof DerbyDatabase || database instanceof H2Database) {
+      if (database instanceof DerbyDatabase) {
          final Table tableExample = new Table();
          tableExample.setName(geometryColumnsName);
          tableExample.setSchema(database.getDefaultCatalogName(),
                database.getDefaultSchemaName());
          example = tableExample;
-      } else if (database instanceof PostgresDatabase) {
+      } else if (database instanceof PostgresDatabase || database instanceof H2Database) {
          final View viewExample = new View();
          viewExample.setName(geometryColumnsName);
          viewExample.setSchema(database.getDefaultCatalogName(), "public");

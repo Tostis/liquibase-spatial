@@ -32,7 +32,7 @@ public class CreateSpatialTableGeneratorGeoDB extends AbstractSqlGenerator<Creat
     */
    @Override
    public boolean supports(final CreateTableStatement statement, final Database database) {
-      return database instanceof DerbyDatabase || database instanceof H2Database;
+      return database instanceof DerbyDatabase;
    }
 
    /**

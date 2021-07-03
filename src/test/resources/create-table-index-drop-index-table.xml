@@ -15,11 +15,12 @@
          modifies
          sql data;
       </sql>
-      <sql dbms="h2">CREATE ALIAS InitGeoDB for "geodb.GeoDB.InitGeoDB"</sql>
-      <sql dbms="derby, h2">CALL InitGeoDB()</sql>
+      <sql dbms="h2">CREATE ALIAS IF NOT EXISTS H2GIS_SPATIAL FOR "org.h2gis.functions.factory.H2GISFunctions.load"</sql>
+      <sql dbms="derby">CALL InitGeoDB()</sql>
+      <sql dbms="h2">CALL H2GIS_SPATIAL()</sql>
       <rollback>
          <sql dbms="derby">DROP PROCEDURE InitGeoDB</sql>
-         <sql dbms="h2">DROP ALIAS InitGeoDB</sql>
+         <sql dbms="h2">DROP ALIAS H2GIS_SPATIAL</sql>
       </rollback>
    </changeSet>
 
@@ -120,9 +121,9 @@
          <rowCount tableName="TEST" expectedRows="3" />
          <sqlCheck expectedResult="POINT (0 0)">
             SELECT ST_AsText(geom)
-            FROM TEST WHERE id IN (
-               SELECT CAST(HATBOX_JOIN_ID AS INT) 
-               FROM HATBOX_MBR_INTERSECTS_ENV(${current_schema_sql}, 'TEST', -2, 2, -2, 2))
+            FROM TEST
+            WHERE ST_Intersects(geom,
+            ST_GeomFromText('POLYGON ((-2 -2, -2 2, 2 2, 2 -2, -2 -2))',4326))
          </sqlCheck>
       </preConditions>
    </changeSet>

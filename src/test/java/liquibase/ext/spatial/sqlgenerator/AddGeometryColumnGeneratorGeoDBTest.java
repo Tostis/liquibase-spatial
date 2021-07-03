@@ -46,7 +46,7 @@ public class AddGeometryColumnGeneratorGeoDBTest {
       final AddColumnStatement statement = new AddColumnStatement((String) null, null, null, null,
             null, null);
       return new Object[][] { new Object[] { statement, new DerbyDatabase(), true },
-            new Object[] { statement, new H2Database(), true },
+            new Object[] { statement, new H2Database(), false },
             new Object[] { statement, new OracleDatabase(), false }, };
    }
 

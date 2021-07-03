@@ -95,7 +95,7 @@ public class SpatialIndexExistsPrecondition extends AbstractPrecondition {
    public ValidationErrors validate(final Database database) {
       final ValidationErrors validationErrors;
 
-      if ((database instanceof DerbyDatabase || database instanceof H2Database)
+      if ((database instanceof DerbyDatabase)
             && getTableName() == null) {
          validationErrors = new ValidationErrors();
          validationErrors
@@ -115,7 +115,7 @@ public class SpatialIndexExistsPrecondition extends AbstractPrecondition {
    @Override
    public void check(Database database, DatabaseChangeLog changeLog, ChangeSet changeSet, ChangeExecListener changeExecListener) throws PreconditionFailedException, PreconditionErrorException {
       Precondition delegatedPrecondition;
-      if (database instanceof DerbyDatabase || database instanceof H2Database) {
+      if (database instanceof DerbyDatabase) {
          final TableExistsPrecondition precondition = new TableExistsPrecondition();
          precondition.setCatalogName(getCatalogName());
          precondition.setSchemaName(getSchemaName());
@@ -163,7 +163,7 @@ public class SpatialIndexExistsPrecondition extends AbstractPrecondition {
       final DatabaseObject example;
 
       // For GeoDB, the index is another table.
-      if (database instanceof DerbyDatabase || database instanceof H2Database) {
+      if (database instanceof DerbyDatabase /*|| database instanceof H2Database*/) {
          final String correctedTableName = database.correctObjectName(getHatboxTableName(),
                Table.class);
          example = new Table().setName(correctedTableName).setSchema(schema);
