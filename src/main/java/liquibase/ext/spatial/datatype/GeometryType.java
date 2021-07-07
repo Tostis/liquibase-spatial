@@ -113,7 +113,7 @@ public class GeometryType extends LiquibaseDataType {
    /**
     * Workaround: Skip this column from loadData tag.
     * It can be WKT or EWKT
-    * @return
+    * @return           Skip this column
     */
    @Override
    public LoadDataChange.LOAD_DATA_TYPE getLoadTypeName() {

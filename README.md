@@ -1,5 +1,5 @@
 About this fork
-- Liquibase 3.10.x
+- Liquibase 4.4.0
 - H2Gis replaces GeoDB (Derby still uses GeoDB)
 
 Liquibase Spatial
@@ -26,7 +26,11 @@ requires Liquibase 3.1.1 or newer.
    </tr>
    <tr>
       <td>Liquibase 3.10.x</td>
-      <td>Liquibase Spatial 1.2.x-Tostis</td>
+      <td>Liquibase Spatial 1.2.4-Tostis</td>
+   </tr>
+   <tr>
+      <td>Liquibase 4.4.0</td>
+      <td>Liquibase Spatial 1.2.5-Tostis</td>
    </tr>
 </table>
 

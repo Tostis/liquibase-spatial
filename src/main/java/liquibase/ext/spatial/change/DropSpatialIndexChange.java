@@ -16,7 +16,7 @@ import liquibase.ext.spatial.statement.DropSpatialIndexStatement;
 import liquibase.ext.spatial.xml.XmlConstants;
 import liquibase.statement.SqlStatement;
 import liquibase.statement.core.DropIndexStatement;
-import liquibase.util.StringUtils;
+import liquibase.util.StringUtil;
 
 /**
  * @author Lonny Jacobson
@@ -79,11 +79,11 @@ public class DropSpatialIndexChange extends AbstractChange {
    @Override
    public String getConfirmationMessage() {
       final StringBuilder message = new StringBuilder("Spatial index");
-      if (StringUtils.trimToNull(getIndexName()) != null) {
+      if (StringUtil.trimToNull(getIndexName()) != null) {
          message.append(' ').append(getIndexName().trim());
       }
       message.append(" dropped");
-      if (StringUtils.trimToNull(getTableName()) != null) {
+      if (StringUtil.trimToNull(getTableName()) != null) {
          message.append(" from ").append(getTableName().trim());
       }
       return message.toString();

@@ -3,6 +3,7 @@ package liquibase.ext.spatial.preconditions;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import liquibase.Scope;
 import liquibase.changelog.ChangeSet;
 import liquibase.changelog.DatabaseChangeLog;
 import liquibase.changelog.visitor.ChangeExecListener;
@@ -87,7 +88,7 @@ public class SpatialSupportedPrecondition extends AbstractPrecondition {
          final RawSqlStatement sql = new RawSqlStatement(
                "SELECT count(*) FROM ALL_VIEWS WHERE upper(VIEW_NAME)='USER_SDO_GEOM_METADATA' AND OWNER='MDSYS'");
          try {
-            final Integer result = ExecutorService.getInstance().getExecutor(database)
+            final Integer result = Scope.getCurrentScope().getSingleton(ExecutorService.class).getExecutor("jdbc", database)
                   .queryForObject(sql, Integer.class);
             if (result == null || result.intValue() == 0) {
                throw new PreconditionFailedException(

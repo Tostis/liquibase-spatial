@@ -1,18 +1,5 @@
 package liquibase.ext.spatial;
 
-import static org.testng.Assert.*;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
-
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
 import liquibase.Contexts;
 import liquibase.LabelExpression;
 import liquibase.Liquibase;
@@ -20,10 +7,22 @@ import liquibase.changelog.ChangeSet;
 import liquibase.database.DatabaseConnection;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
-import liquibase.logging.LogFactory;
-import liquibase.logging.LogLevel;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.ResourceAccessor;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+
+import static org.testng.Assert.assertTrue;
 
 /**
  * Performs a full integration test of all preconditions, changes, statements and SQL generators
@@ -117,8 +116,17 @@ public abstract class LiquibaseIT {
     */
    @SuppressWarnings("deprecation")
    @BeforeTest
-   public void setUp() throws Exception {
-      LogFactory.setLoggingLevel("debug");
+   public void setUp() {
+      setLogLevel();
+   }
+
+   private void setLogLevel() {
+      Level logLevel = Level.FINEST;
+      java.util.logging.Logger rootLogger = java.util.logging.Logger.getLogger("");
+      rootLogger.setLevel(logLevel);
+      for (Handler handler : rootLogger.getHandlers()) {
+            handler.setLevel(logLevel);
+      }
    }
 
    /**
@@ -197,7 +205,7 @@ public abstract class LiquibaseIT {
          final ResourceAccessor resourceAccessor, final DatabaseConnection databaseConnection)
                throws LiquibaseException {
       final Liquibase liquibase = new Liquibase(changeLogFile, resourceAccessor, databaseConnection);
-      // liquibase.getLog().setLogLevel(LogLevel.DEBUG); // TODO dunno
+      setLogLevel();
       return liquibase;
    }
 

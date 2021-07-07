@@ -11,7 +11,7 @@ import java.util.Map;
 import liquibase.database.Database;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.UnexpectedLiquibaseException;
-import liquibase.util.StringUtils;
+import liquibase.util.StringUtil;
 
 /**
  * <code>OracleSpatialUtils</code> provides utility methods for Oracle Spatial.
@@ -81,7 +81,7 @@ public class OracleSpatialUtils {
     */
    public static String getOracleSrid(final String srid, final Database database) {
       final String oracleSrid;
-      if (StringUtils.trimToNull(srid) == null) {
+      if (StringUtil.trimToNull(srid) == null) {
          oracleSrid = null;
       } else if (EPSG_TO_ORACLE_MAP.containsKey(srid)) {
          oracleSrid = EPSG_TO_ORACLE_MAP.get(srid);

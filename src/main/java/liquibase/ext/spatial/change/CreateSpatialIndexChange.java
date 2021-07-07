@@ -15,7 +15,7 @@ import liquibase.exception.ValidationErrors;
 import liquibase.ext.spatial.statement.CreateSpatialIndexStatement;
 import liquibase.ext.spatial.xml.XmlConstants;
 import liquibase.statement.SqlStatement;
-import liquibase.util.StringUtils;
+import liquibase.util.StringUtil;
 
 /**
  * The <code>CreateSpatialIndexChange</code> represents a database change to
@@ -179,11 +179,11 @@ public class CreateSpatialIndexChange extends AbstractChange
    @Override
    public String getConfirmationMessage() {
       final StringBuilder message = new StringBuilder("Spatial index");
-      if (StringUtils.trimToNull(getIndexName()) != null) {
+      if (StringUtil.trimToNull(getIndexName()) != null) {
          message.append(' ').append(getIndexName().trim());
       }
       message.append(" created");
-      if (StringUtils.trimToNull(getTableName()) != null) {
+      if (StringUtil.trimToNull(getTableName()) != null) {
          message.append(" on ").append(getTableName().trim());
       }
       return message.toString();

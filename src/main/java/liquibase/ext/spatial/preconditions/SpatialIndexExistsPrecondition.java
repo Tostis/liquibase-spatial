@@ -28,7 +28,7 @@ import liquibase.structure.core.Column;
 import liquibase.structure.core.Index;
 import liquibase.structure.core.Schema;
 import liquibase.structure.core.Table;
-import liquibase.util.StringUtils;
+import liquibase.util.StringUtil;
 
 /**
  * <code>SpatialIndexExistsPrecondition</code> determines if a spatial index exists on a specified
@@ -141,7 +141,7 @@ public class SpatialIndexExistsPrecondition extends AbstractPrecondition {
     */
    protected String getHatboxTableName() {
       final String tableName;
-      if (!StringUtils.hasUpperCase(getTableName())) {
+      if (!StringUtil.hasUpperCase(getTableName())) {
          tableName = getTableName() + "_hatbox";
       } else {
          tableName = getTableName() + "_HATBOX";
@@ -163,7 +163,7 @@ public class SpatialIndexExistsPrecondition extends AbstractPrecondition {
       final DatabaseObject example;
 
       // For GeoDB, the index is another table.
-      if (database instanceof DerbyDatabase /*|| database instanceof H2Database*/) {
+      if (database instanceof DerbyDatabase) {
          final String correctedTableName = database.correctObjectName(getHatboxTableName(),
                Table.class);
          example = new Table().setName(correctedTableName).setSchema(schema);
@@ -192,7 +192,7 @@ public class SpatialIndexExistsPrecondition extends AbstractPrecondition {
                database.correctObjectName(getTableName(), Table.class)).setSchema(schema));
       }
       example.setName(database.correctObjectName(getIndexName(), Index.class));
-      if (StringUtils.trimToNull(getColumnNames()) != null) {
+      if (StringUtil.trimToNull(getColumnNames()) != null) {
          for (final String columnName : getColumnNames().split("\\s*,\\s*")) {
             final Column column = new Column(database.correctObjectName(columnName, Column.class));
             example.getColumns().add(column);

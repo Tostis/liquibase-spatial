@@ -69,7 +69,7 @@ public class AddGeometryColumnGeneratorGeoDBTest {
 
    @DataProvider
    public Object[][] generateSqlTestData() {
-      final Database database = new H2Database();
+      final Database database = new DerbyDatabase();
 
       final AddColumnStatement notGeometry = new AddColumnStatement(null, null, null, null,
             "BOOLEAN", null);

@@ -14,7 +14,7 @@ import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.structure.core.Column;
 import liquibase.structure.core.Table;
 import liquibase.structure.core.View;
-import liquibase.util.StringUtils;
+import liquibase.util.StringUtil;
 
 /**
  * <code>CreateSpatialIndexGeneratorOracle</code> generates the SQL for creating a spatial index in
@@ -127,7 +127,7 @@ public class CreateSpatialIndexGeneratorOracle extends AbstractCreateSpatialInde
       final Collection<String> parameters = getParameters(statement);
       if (parameters != null && !parameters.isEmpty()) {
          sql.append(" PARAMETERS ('");
-         sql.append(StringUtils.join(parameters, " "));
+         sql.append(StringUtil.join(parameters, " "));
          sql.append("')");
       }
       return sql.toString();
@@ -142,13 +142,13 @@ public class CreateSpatialIndexGeneratorOracle extends AbstractCreateSpatialInde
     */
    protected Collection<String> getParameters(final CreateSpatialIndexStatement statement) {
       final Collection<String> parameters = new ArrayList<String>();
-      if (StringUtils.trimToNull(statement.getGeometryType()) != null) {
+      if (StringUtil.trimToNull(statement.getGeometryType()) != null) {
          final String gType = getGtype(statement.getGeometryType().trim());
          if (gType != null) {
             parameters.add("layer_gtype=" + gType);
          }
       }
-      if (StringUtils.trimToNull(statement.getTablespace()) != null) {
+      if (StringUtil.trimToNull(statement.getTablespace()) != null) {
          parameters.add("tablespace=" + statement.getTablespace().trim());
       }
       return parameters;

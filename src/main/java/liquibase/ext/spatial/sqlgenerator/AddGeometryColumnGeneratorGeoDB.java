@@ -17,7 +17,7 @@ import liquibase.sqlgenerator.SqlGenerator;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 import liquibase.statement.core.AddColumnStatement;
-import liquibase.util.StringUtils;
+import liquibase.util.StringUtil;
 
 /**
  * <code>AddGeometryColumnGeneratorGeoDB</code> is a SQL generator that
@@ -99,7 +99,7 @@ public class AddGeometryColumnGeneratorGeoDB extends
          final String columnName = statement.getColumnName();
 
          final int srid = geometryType.getSRID();
-         final String geomType = StringUtils.trimToNull(geometryType
+         final String geomType = StringUtil.trimToNull(geometryType
                .getGeometryType()) == null ? "'Geometry'" : "'"
                + database.escapeStringForDatabase(geometryType
                      .getGeometryType()) + "'";
